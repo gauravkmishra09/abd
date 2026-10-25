@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Something For You ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Montserrat,sans-serif;background:linear-gradient(135deg,#ffe0ec,#fff0f5,#ffd6e7);color:#71364e;display:flex;align-items:center;justify-content:center;padding:20px}
+.slide{display:none;width:min(100%,520px);text-align:center;background:#ffffffd9;padding:30px 24px;border-radius:26px;box-shadow:0 15px 50px #b74c7726;animation:appear .5s ease}
+.slide.active{display:block}
+h1{font-size:clamp(27px,6vw,38px);margin:12px 0;color:#b83268}
+h2{font-family:'Dancing Script',cursive;font-size:34px;margin:12px 0;color:#b83268}
+p{line-height:1.8}
+.emoji{font-size:65px}
+button{font:700 15px Montserrat,sans-serif;border:0;border-radius:30px;padding:13px 24px;cursor:pointer;transition:transform .2s}
+.primary{background:#d94e86;color:white;box-shadow:0 5px 15px #d94e8640}
+.secondary{background:#fff;color:#b83268;border:2px solid #f3a4c3}
+.buttons{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:24px;min-height:55px}
+#yesBtn{position:relative}
+#noBtn{position:relative}
+.note{font-size:13px;color:#9a637b}
+.photo{width:100%;max-height:310px;object-fit:contain;border-radius:18px;background:#fff0f5}
+.reasons{display:grid;gap:10px;text-align:left;margin-top:20px}
+.reason{padding:12px;background:#fff0f6;border-radius:12px}
+.choice{display:block;width:100%;margin:10px 0}
+#reply{font-weight:700;min-height:50px;margin-top:16px}
+.heart{color:#e64b87}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:400px){.slide{padding:24px 16px}.buttons{gap:8px}}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 -->
+<section class="slide active" id="slide1">
+  <div class="emoji">🥺💗</div>
+  <h1 id="question">Are you angry with me?</h1>
+  <p>Please tell me, honestly...</p>
+  <div class="buttons">
+    <button class="primary" id="yesBtn">Yes 😠</button>
+    <button class="secondary" id="noBtn">No 💗</button>
+  </div>
+  <p class="note">Choose wisely, madam ji!</p>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide" id="slide2">
+  <div class="emoji">🧸💌</div>
+  <h2>Sorry, My Love</h2>
+  <h1>I'm Really Sorry ❤️</h1>
+  <p>I never want to be the reason behind your sadness.</p>
+  <p>You are special to me, and your smile means a lot to me. If I hurt you, I'm sorry. I want to understand you and make things right.</p>
+  <p class="heart">Sending you a big virtual hug! 🫂</p>
+  <button class="primary" onclick="showSlide(3)">Next: Our Memories →</button>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide" id="slide3">
+  <div class="emoji">📸💕</div>
+  <h2>Our Memories</h2>
+  <p>Some moments deserve to be kept forever.</p>
+  <img class="photo" id="memoryPhoto" src="images/pic1-CzYwUIkT.jpg" alt="Our memory">
+  <p id="memoryCaption">A little moment, a lovely memory ❤️</p>
+  <div class="buttons">
+    <button class="secondary" onclick="changePhoto(-1)">← Previous</button>
+    <button class="secondary" onclick="changePhoto(1)">Next →</button>
+  </div>
+  <p class="note">You can replace these sample pictures with your own photos.</p>
+  <button class="primary" onclick="showSlide(4)">Next: Block & Unblock →</button>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide" id="slide4">
+  <div class="emoji">📱🥹</div>
+  <h2>Block & Unblock</h2>
+  <h1>Madam Ji, unblock kab karogi?</h1>
+  <p>Choose your answer, please! 🥺</p>
+  <button class="secondary choice" onclick="chooseDay('Aaj')">Aaj unblock kar dungi ❤️</button>
+  <button class="secondary choice" onclick="chooseDay('Kal')">Kal pakka kar dungi 🥹</button>
+  <button class="secondary choice" onclick="chooseDay('Parson')">Parson kar dungi 🙈</button>
+  <div id="reply"></div>
+  <button class="primary" onclick="showSlide(5)">One More Thing →</button>
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide" id="slide5">
+  <div class="emoji">💖🌷</div>
+  <h2>Why I Love You</h2>
+  <p>There are so many reasons, but here are a few...</p>
+  <div class="reasons">
+    <div class="reason">💗 Your smile makes my day better.</div>
+    <div class="reason">💗 I love the way you make ordinary moments special.</div>
+    <div class="reason">💗 Your presence means more than you know.</div>
+    <div class="reason">💗 I love the memories we create together.</div>
+    <div class="reason">💗 You are uniquely you, and that matters to me.</div>
+  </div>
+  <h2 style="margin-top:24px">You mean a lot to me ❤️</h2>
+  <p>No pressure, no expectations. Whenever you're ready, I'd love to talk and make things right.</p>
+  <div class="emoji">🧸💐💌</div>
+  <button class="secondary" onclick="showSlide(1)">Start Again ↻</button>
+</section>
+
+<script>
+const photos = [
+  {src:"images/pic1-CzYwUIkT.jpg", caption:"A little moment, a lovely memory ❤️"},
+  {src:"images/pic2-DDdxw6b7.gif", caption:"A memory that makes me smile 💗"},
+  {src:"images/pic3-BzPg4yUa.jpg", caption:"Some memories stay close to the heart 🌷"}
+];
+let photoIndex = 0;
+
+function showSlide(number) {
+  document.querySelectorAll(".slide").forEach(slide => slide.classList.remove("active"));
+  document.getElementById("slide" + number).classList.add("active");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function changePhoto(direction) {
+  photoIndex = (photoIndex + direction + photos.length) % photos.length;
+  document.getElementById("memoryPhoto").src = photos[photoIndex].src;
+  document.getElementById("memoryCaption").textContent = photos[photoIndex].caption;
+}
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+let yesAttempts = 0;
+
+yesBtn.addEventListener("pointerenter", moveYes);
+yesBtn.addEventListener("click", moveYes);
+
+function moveYes() {
+  yesAttempts++;
+  yesBtn.style.transform =
+    "translate(" + (Math.random()*100-50) + "px," +
+    (Math.random()*70-35) + "px)";
+  yesBtn.style.fontSize = Math.max(10, 15 - yesAttempts) + "px";
+  yesBtn.textContent = yesAttempts > 3 ? "Yes? 🙈" : "Yes 😠";
+  if (yesAttempts > 5) yesBtn.style.opacity = "0.65";
+}
+
+noBtn.addEventListener("click", () => showSlide(2));
+
+function chooseDay(day) {
+  const reply = document.getElementById("reply");
+  const messages = {
+    Aaj: "Aaj? Best news ever! ❤️ Only if you really feel ready.",
+    Kal: "Kal? Theek hai, madam ji. No pressure 🥹",
+    Parson: "Parson bhi theek hai. Take your time 💗"
+  };
+  reply.textContent = messages[day];
+}
+</script>
+</body>
+</html>
